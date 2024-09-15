@@ -13,31 +13,26 @@ Are you an avid enjoyer of history? Want to test your knowledge against friends 
 
 ### Key features
 
-- Secure login over HTTPS
-- Ability to select the question to decide
-- Display of choices
-- Ability to select, and change, top three choices
-- Totals from all users displayed in realtime
-- Ability for a user to lock in their top three
-- Results are persistently stored
-- Ability for admin to create and delete questions
+- Secure login over HTTPS (optional) - only needed if score is to be saved with account
+- Ability to select easy/medium/hard which will change questions/number of questions
+- Ability to answer questions through the box (which will accept a few similar versions)
+- Time limit and score tally - can be saved with account
+- Ability to switch to different quiz or random quiz
+- (Hopefully) Ability for multiplayer play (challenge/ co-op quizzes)
+- (Maybe) Ability for users to create and maybe publish quizzes
 
 ### Technologies
 
 I am going to use the required technologies in the following ways.
 
-- **HTML** - Uses correct HTML structure for application. Two HTML pages. One for login and one for voting. Hyperlinks to choice artifact.
-- **CSS** - Application styling that looks good on different screen sizes, uses good whitespace, color choice and contrast.
-- **React** - Provides login, choice display, applying votes, display other users votes, and use of React for routing and components.
+- **HTML** - HTML to structure the webpages on the site. HTML home page and additional pages for different quizzes easy/medium/hard - navigate with hyperlinks. Additional log-in page as well.
+- **CSS** - CSS to style text, background, whitespace, etc to look pleasing on different devices
+- **Javascript/React** - Provides login, difficulty selection, text input, timer/score tally, possible form for user quizzes, real-time feedback, and use of React for routing and components.
 - **Service** - Backend service with endpoints for:
   - login
-  - retrieving choices
-  - submitting votes
-  - retrieving vote status
-- **DB/Login** - Store users, choices, and votes in database. Register and login users. Credentials securely stored in database. Can't vote unless authenticated.
-- **WebSocket** - As each user votes, their votes are broadcast to all other users.
-
-- [x] **Backend listens for WebSocket connection** - done!
-- [x] **Frontend makes WebSocket connection** - done!
-- [x] **Data sent over WebSocket connection** - done!
-- [x] **WebSocket data displayed** - All user votes display in realtime. I'm really proud that this is working. Way cool!
+  - saving scores
+  - saving times
+  - saving user level
+  - creating/publishing quizzes
+- **DB/Login** - Store users, scores, times, levels in database. Register and login users. Credentials securely stored in database.
+- **WebSocket** - multiplayer challenges/ co-op with real-time score/answer updates
