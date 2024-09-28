@@ -4,6 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Norhog</title>
+    <style type = text/css>
+    .answer { display:none;}
+    </style>
   </head>
   <body>
     <header>
@@ -57,18 +60,99 @@
       <div>
         <button>Play</button>
       </div>
+      <br>
+      <div>
+        <input type="text" id="answerBox" placeholder="Answer Here..."/>
+      </div>
       <br />
-      <table class="easy" style="display:block">
-        <th>goony</th>
-          <tr>goon</tr>
-          <tr>goon</tr>
-        <td>goon</td>
+      <table class="easy" style="display:none;">
+        <tr>
+          <th class="question">Question</th>
+          <th class="answerhead">Answer</th>
+        </tr>
+        <tbody>
+        <tr>
+          <td class="question">When did the French Revolution begin?</td>
+          <td class="answer">1789</td>
+        </tr>
+        </tbody>
       </table>
-      
+      <table class="medium" style="display:block;">
+        <tr>
+          <th class="question">Question</th>
+          <th class="answerhead">Answer</th>
+        </tr>
+        <tbody>
+        <tr>
+          <td class="question">When did the French Revolution begin?</td>
+          <td class="answer">1789</td>
+        </tr>
+        <tr>
+          <td class="question">What famous prison was stormed in that year?</td>
+          <td class="answer">The Bastille</td>
+        </tr>
+        <tr>
+          <td class="question">Which assembly did the king summon?</td>
+          <td class="answer">The Estates General</td>
+        </tr>
+        <tr>
+          <td class="question">What crisis caused the assmebly to be summoned?</td>
+          <td class="answer">Financial Crisis</td>
+        </tr>
+        <tr>
+          <td class="question">Which king reigned during the revolution before his death?</td>
+          <td class="answer">Louis XVI</td>
+        </tr>
+        <tr>
+          <td class="question">Who was his queen?</td>
+          <td class="answer">Marie Antoinette</td>
+        </tr>
+        <tr>
+          <td class="question">What was the famous radical revolutionary group?</td>
+          <td class="answer">The Jacobins</td>
+        </tr>
+        <tr>
+          <td class="question">Who led that group during the "Reign of Terror"?</td>
+          <td class="answer">Maximilien Robespierre</td>
+        </tr>
+        <tr>
+          <td class="question">What device was most commonly used for execution?</td>
+          <td class="answer">The Guillotine</td>
+        </tr>
+        <tr></tr>
+          <td class="question">What was the Catholic Church replaced with?</td>
+          <td class="answer">The Cult of Reason</td>
+        </tr>
+      </tbody>
+      </table>
+      <table class="hard" style="display:none;"></table>
+      <tr>
+        <th class="question">Question</th>
+        <th class="answerhead">Answer</th>
+      </tr>
+      <tbody>
+      <tr>
+        <td class="question">When did the French Revolution begin?</td>
+        <td class="answer">1789</td>
+      </tr>
+      </tbody>
+    </table>  
     </main>
 
     <footer>
       <hr />
+      <table class="comments" style="display:block;"> <!--comment websocket place holder-->
+        <tr><input type="text" id="commentBox" placeholder="Type your comment..."/><button>Comment</button></tr>
+        <tr>
+          <td>iNeverTouchGrass:</td>
+          <td>"erm this is so easy"</td>
+          <td>10 August 2024</td>
+        <tr>
+          <td>wholesomeUser57:</td>
+          <td>"great quiz!"</td>
+          <td>18 September 2024</td><br></tr>
+      </table>
+      <p>Ryan Russon</p>
       <a href="https://github.com/RyGuy907/startup">GitHub</a>
     </footer>
   </body>
