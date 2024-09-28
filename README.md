@@ -36,3 +36,12 @@ I am going to use the required technologies in the following ways.
   - creating/publishing quizzes
 - **DB/Login** - Store users, scores, times, levels in database. Register and login users. Credentials securely stored in database.
 - **WebSocket** - multiplayer challenges/ co-op with real-time score/answer updates
+
+HTML
+
+I created my basic website html, including one quiz. With this basic template I can eventually create many more quizzes. I also have placeholders for what javascript and react will eventually do, including the radio buttons for difficulty which will alter the display settings for the quiz tables. Also on the profile page after you log in it will show your user data (currently showing because not set up yet).
+
+Application data - FrenchRevQuiz.html (all buttons, inputs, etc related to this) 
+Authentication - profile.html (login placeholders) 
+Database data - leaderboard data, user data 
+websocket data - real-time leaderboard, comments
