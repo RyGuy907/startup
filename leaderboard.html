@@ -3,53 +3,54 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Scores</title>
-    <link rel="icon" href="favicon.ico" />
+    <title>Norhog</title>
   </head>
   <body>
     <header>
-      <h1>Simon<sup>&reg;</sup></h1>
+      <h1>Norhog<sup>&reg;</sup></h1>
+      <h3>Welcome</h3>
 
       <nav>
         <menu>
           <li><a href="index.html">Home</a></li>
-          <li><a href="play.html">Play</a></li>
-          <li><a href="scores.html">Scores</a></li>
-          <li><a href="about.html">About</a></li>
+          <li>Random Quiz</li>
+          <li><a href="leaderboard.html">Leaderboard</a></li>
+          <li><a href="profile.html">Profile</a></li>
         </menu>
       </nav>
 
+      
       <hr />
     </header>
 
     <main>
-      <table>
+      <table class="leaderboard"> <!--database data/possible websocket - updating real time-->
         <thead>
           <tr>
             <th>#</th>
-            <th>Name</th>
-            <th>Score</th>
-            <th>Date</th>
+            <th>Username</th>
+            <th>Points</th>
+            <th>Account Created</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>1</td>
-            <td>도윤 이</td>
-            <td>34</td>
-            <td>May 20, 2021</td>
+            <td>jag_alskar_surstromming</td>
+            <td>523</td>
+            <td>May 20, 2024</td>
           </tr>
           <tr>
             <td>2</td>
-            <td>Annie James</td>
-            <td>29</td>
-            <td>June 2, 2021</td>
+            <td>mogged</td>
+            <td>302</td>
+            <td>June 2, 2024</td>
           </tr>
           <tr>
             <td>3</td>
-            <td>Gunter Spears</td>
-            <td>7</td>
-            <td>July 3, 2020 </td>
+            <td>attilaThePun</td>
+            <td>301</td>
+            <td>July 3, 2024</td>
           </tr>
         </tbody>
       </table>
@@ -57,9 +58,9 @@
 
     <footer>
       <hr />
-      <span class="text-reset">Author Name(s)</span>
       <br />
-      <a href="https://github.com/webprogramming260/simon-html">GitHub</a>
+      <p>Ryan Russon</p>
+      <a href="https://github.com/RyGuy907/startup">GitHub</a>
     </footer>
   </body>
 </html>

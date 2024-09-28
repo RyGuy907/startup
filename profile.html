@@ -3,49 +3,66 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About</title>
-    <link rel="icon" href="favicon.ico" />
+    <title>Norhog</title>
   </head>
   <body>
     <header>
-      <h1>Simon<sup>&reg;</sup></h1>
+      <h1>Norhog<sup>&reg;</sup></h1>
+      <h3>Welcome</h3>
 
       <nav>
         <menu>
           <li><a href="index.html">Home</a></li>
-          <li><a href="play.html">Play</a></li>
-          <li><a href="scores.html">Scores</a></li>
-          <li><a href="about.html">About</a></li>
+          <li>Random Quiz</li>
+          <li><a href="leaderboard.html">Leaderboard</a></li>
+          <li><a href="profile.html">Profile</a></li>
         </menu>
       </nav>
 
+      
       <hr />
     </header>
 
     <main>
-      <div id="picture" class="picture-box"><img width="400px" src="placeholder.jpg" alt="random" /></div>
-
-      <p>
-        Simon is a repetitive memory game where you follow the demonstrated color sequence until you make a mistake. The
-        longer the sequence you repeat, the greater your score.
-      </p>
-
-      <p>
-        The name Simon is a registered trademark of Milton-Bradley. Our use of the name and the game is for non-profit
-        educational use only. No part of this code or program should be used outside of that definition.
-      </p>
-
-      <div id="quote">
-        <div>Words are cheap. Show me the code.</div>
-        <div>- Linus Torvalds </div>
-      </div>
+      <form method="get"></form> <!-- will eventually toggle display:block; for the data table-->
+        <div>
+          <span>E-mail:</span>
+          <input type="text" placeholder="your@email.com">
+        </div>
+        <div>
+          <span>Password:</span>
+          <input type="password" placeholder="password">
+        </div>
+        <button type="submit">Login</button>
+        <button type="submit">Create</button>
+      </form>
+      <hr>
+      <h2>Your Profile</h2>
+      <table class="userData">
+        <thead>
+          <tr>
+            <th>Ranking</th>
+            <th>Username</th>
+            <th>Total Points</th>
+            <th>Account Created</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>jag_alskar_surstromming</td>
+            <td>523</td>
+            <td>May 20, 2024</td>
+          </tr>
+        </tbody>
+      </table>
     </main>
 
     <footer>
       <hr />
-      <span class="text-reset">Author Name(s)</span>
       <br />
-      <a href="https://github.com/webprogramming260/simon-html">GitHub</a>
+      <p>Ryan Russon</p>
+      <a href="https://github.com/RyGuy907/startup">GitHub</a>
     </footer>
   </body>
 </html>

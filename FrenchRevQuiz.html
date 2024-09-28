@@ -2,105 +2,158 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <!-- Tell browsers not to scale the viewport automatically -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Simon </title>
-    <link rel="icon" href="favicon.ico" />
+    <title>Norhog</title>
+    <style type = text/css>
+    .answer { display:none;}
+    </style>
   </head>
   <body>
-    <!-- Use header, main, and footer elements to give semantic structure -->
     <header>
-      <h1>Simon<sup>&reg;</sup></h1>
-
-      <!-- Navigation elements -->
+      <h1>Norhog<sup>&reg;</sup></h1>
       <nav>
-        <!-- Menu is a semantic alternative to <ul> that represents an interaction -->
         <menu>
           <li><a href="index.html">Home</a></li>
-          <li><a href="play.html">Play</a></li>
-          <li><a href="scores.html">Scores</a></li>
-          <li><a href="about.html">About</a></li>
+          <li>Random Quiz</li>
+          <li><a href="leaderboard.html">Leaderboard</a></li>
+          <li><a href="profile.html">Profile</a></li>
         </menu>
       </nav>
-
-      <!-- Since we don't have the ability to style we use old style HTML to give some visual formatting -->
+      <h4>Recommended Quizzes</h4>
+      <ul class="Recommended">
+        <li class="recquiz">The Seven Years' War</li>
+        <li class="recquiz">Napoleon Bonaparte</li>
+        <li class="recquiz">Monarchs of France</li>
+        <li class="recquiz">The American Revolution</li>
+      </ul>
+      
       <hr />
     </header>
 
     <main>
-      <div class="players">
-        Player:
-        <span class="player-name">Mystery player</span>
-      </div>
-      <ul class="notification">
-        <li class="player-name">Tim started a new game</li>
-        <li class="player-name">Ada started a new game</li>
-        <li class="player-name">Tim scored 337</li>
-      </ul>
-
-      <!-- More formatting with old style HTML -->
+      <h2>The French Revolution</h2>
+      <img src="https://cdn.britannica.com/98/90498-050-5527D0C1/prison-event-Bastille-French-Revolution-engraving-July-14-1789.jpg?w=300" alt="Storming of the Bastille">
+      <p>Can you answer these questions about the French Revolution?</p>
+        <fieldset class="difficulty">
+          <label for="radio1">Easy</label>
+          <input type="radio" id="radio1" name="varRadio" value="radio1" checked />
+          <label for="radio2">Medium</label>
+          <input type="radio" id="radio2" name="varRadio" value="radio2" />
+          <label for="radio3">Hard</label>
+          <input type="radio" id="radio3" name="varRadio" value="radio3" />
+        </fieldset>
       <br />
 
       <div>
-        <label for="count">Score</label>
-        <input type="text" id="count" value="--" readonly />
+        <label for="tbest">Best Time:</label>
+        <input type="text" id="count" value="" readonly />
       </div>
-
-      <br />
+      <div>
+        <label for="sbest">Best Score:</label>
+        <input type="text" id="count" value="" readonly />
+      </div>
+      <br>
+      <input type="text" id="timer" value="1:00" readonly />
+      <input type="text" id="score" value="/10" readonly />
+      <br>
 
       <div>
-        <button>Reset</button>
+        <button>Play</button>
       </div>
-
-      <br />
-
+      <br>
       <div>
-        <table>
-          <tr>
-            <td>
-              <button>
-                <svg aria-hidden="true" viewBox="0 0 100 100" height="100" width="100">
-                  <!-- SVG
-                    M move <to x,y>
-                    Q quadratic curve <control point x,y> <to x,y>
-                -->
-                  <path d="M 95,5 95,95 5,95 Q 5,5 95,5" fill="green" />
-                </svg>
-              </button>
-            </td>
-            <td>
-              <button>
-                <svg aria-hidden="true" viewBox="0 0 100 100" height="100" width="100">
-                  <path d="M5,5 5,95 95,95 Q 95,5 5,5" fill="red" />
-                </svg>
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <button>
-                <svg aria-hidden="true" viewBox="0 0 100 100" height="100" width="100">
-                  <path d="M5,5 95,5 95,95 Q 5,95 5,5" fill="blue" />
-                </svg>
-              </button>
-            </td>
-            <td>
-              <button>
-                <svg aria-hidden="true" viewBox="0 0 100 100" height="100" width="100">
-                  <path d="M95,5 5,5 5,95 Q 95,95 95,5" fill="yellow" />
-                </svg>
-              </button>
-            </td>
-          </tr>
-        </table>
+        <input type="text" id="answerBox" placeholder="Answer Here..."/>
       </div>
+      <br />
+      <table class="easy" style="display:none;">
+        <tr>
+          <th class="question">Question</th>
+          <th class="answerhead">Answer</th>
+        </tr>
+        <tbody>
+        <tr>
+          <td class="question">When did the French Revolution begin?</td>
+          <td class="answer">1789</td>
+        </tr>
+        </tbody>
+      </table>
+      <table class="medium" style="display:block;">
+        <tr>
+          <th class="question">Question</th>
+          <th class="answerhead">Answer</th>
+        </tr>
+        <tbody>
+        <tr>
+          <td class="question">When did the French Revolution begin?</td>
+          <td class="answer">1789</td>
+        </tr>
+        <tr>
+          <td class="question">What famous prison was stormed in that year?</td>
+          <td class="answer">The Bastille</td>
+        </tr>
+        <tr>
+          <td class="question">Which assembly did the king summon?</td>
+          <td class="answer">The Estates General</td>
+        </tr>
+        <tr>
+          <td class="question">What crisis caused the assmebly to be summoned?</td>
+          <td class="answer">Financial Crisis</td>
+        </tr>
+        <tr>
+          <td class="question">Which king reigned during the revolution before his death?</td>
+          <td class="answer">Louis XVI</td>
+        </tr>
+        <tr>
+          <td class="question">Who was his queen?</td>
+          <td class="answer">Marie Antoinette</td>
+        </tr>
+        <tr>
+          <td class="question">What was the famous radical revolutionary group?</td>
+          <td class="answer">The Jacobins</td>
+        </tr>
+        <tr>
+          <td class="question">Who led that group during the "Reign of Terror"?</td>
+          <td class="answer">Maximilien Robespierre</td>
+        </tr>
+        <tr>
+          <td class="question">What device was most commonly used for execution?</td>
+          <td class="answer">The Guillotine</td>
+        </tr>
+        <tr></tr>
+          <td class="question">What was the Catholic Church replaced with?</td>
+          <td class="answer">The Cult of Reason</td>
+        </tr>
+      </tbody>
+      </table>
+      <table class="hard" style="display:none;"></table>
+      <tr>
+        <th class="question">Question</th>
+        <th class="answerhead">Answer</th>
+      </tr>
+      <tbody>
+      <tr>
+        <td class="question">When did the French Revolution begin?</td>
+        <td class="answer">1789</td>
+      </tr>
+      </tbody>
+    </table>  
     </main>
 
     <footer>
       <hr />
-      <span class="text-reset">Author Name(s)</span>
-      <br />
-      <a href="https://github.com/webprogramming260/simon-html">GitHub</a>
+      <table class="comments" style="display:block;"> <!--comment websocket place holder-->
+        <tr><input type="text" id="commentBox" placeholder="Type your comment..."/><button>Comment</button></tr>
+        <tr>
+          <td>iNeverTouchGrass:</td>
+          <td>"erm this is so easy"</td>
+          <td>10 August 2024</td>
+        <tr>
+          <td>wholesomeUser57:</td>
+          <td>"great quiz!"</td>
+          <td>18 September 2024</td><br></tr>
+      </table>
+      <p>Ryan Russon</p>
+      <a href="https://github.com/RyGuy907/startup">GitHub</a>
     </footer>
   </body>
 </html>
