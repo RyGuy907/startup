@@ -8,3 +8,6 @@ Application data - FrenchRevQuiz.html (all buttons, inputs, etc related to this)
 Authentication - profile.html (login placeholders)
 Database data - leaderboard data, user data
 websocket data - real-time leaderboard, comments
+
+
+I created a css theme throughout and deployed my files to my website
