@@ -51,4 +51,4 @@ websocket data - real-time leaderboard, comments
 
 CSS
 
-I created a theme for the website and styled all existing html pages with css files. The same pages are still available, and with the quiz css file it can be a template for other quizzes eventually. Also for the time being some things are showing even though they may eventually only show after an action (button click, login, etc)
+I created a theme for the website and styled all existing html pages with css files. The same pages are still available, and with the quiz css file it can be a template for other quizzes eventually. Also for the time being some things are showing even though they may eventually only show after an action (button click, login, etc). Also I'm aware this development period didn't have spread out commits, I will work on this in the future.
