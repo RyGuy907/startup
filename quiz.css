@@ -1,7 +1,5 @@
 body {
   font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
 }
 
 header, footer {
@@ -10,14 +8,7 @@ header, footer {
   padding: 20px;
 }
 
-h1 {
-  margin: 0;
-}
-
 nav menu {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
   display: flex;
   justify-content: flex-end;
   gap: 15px;
@@ -37,11 +28,6 @@ nav menu li a {
 nav menu li a:hover {
   text-decoration: underline;
   color: #bbbbbb;
-}
-
-hr {
-  margin-top: 20px;
-  margin-bottom: 20px;
 }
 
 
@@ -69,20 +55,14 @@ main p {
   margin-bottom: 20px;
 }
 
-.container {
-  margin: 0;
-}
-
-
 fieldset.difficulty {
   border: none;
-  padding: 0;
   margin-bottom: 20px;
 }
 
 fieldset.difficulty label {
-  margin-right: 10px;
   font-weight: bold;
+  margin-right: 10px;
 }
 
 fieldset.difficulty input[type="radio"] {
@@ -106,14 +86,13 @@ button {
   color: #ffffff;
   border: none;
   padding: 6px 20px;
+  border-radius: 5px;
   margin-top: 10px;
   font-size: 1rem;
-  border-radius: 5px;
 }
 
 button:hover {
   background-color: #2b7224;
-  cursor: pointer;
 }
 
 
@@ -124,24 +103,18 @@ button:hover {
 }
 
 
-.recommended-box {
+.rec-box {
   background-color: #f8f9fa;
-  padding: 15px;
-  border: 1px solid #dee2e6;
+  padding: 20px;
   border-radius: 5px;
   margin-top: 20px;
+  border: 1px solid #b7bbbe;
 }
 
-.recommended-box h4 {
-  margin-top: 0;
+
+
+.rec-box h4 {
   margin-bottom: 15px;
-}
-
-
-.Recommended {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
 }
 
 .recquiz {
@@ -157,10 +130,6 @@ table {
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 20px;
-}
-
-table.easy, table.medium, table.hard {
-  display: none; 
 }
 
 table tr th, table tr td {
@@ -188,15 +157,15 @@ table tr th {
   margin-top: 20px;
 }
 
-#commentBox {
-  width: 80%;
-  padding: 10px;
-  font-size: 1rem;
-}
-
 .comments button {
   padding: 10px 20px;
   margin-left: 10px;
+  font-size: 1rem;
+}
+
+#comment_box {
+  width: 80%;
+  padding: 10px;
   font-size: 1rem;
 }
 
@@ -205,37 +174,7 @@ table tr th {
   width: 20%;
 }
 
-.comments tr td:nth-child(2) {
-  width: 60%;
-}
 
-.comments tr td:nth-child(3) {
-  width: 20%;
-  text-align: right;
-  color: #6c757d;
-  font-size: 0.9rem;
-}
-
-.comments tr {
-  border-bottom: 1px solid #dee2e6;
-}
-
-.comments tr:last-child {
-  border-bottom: none;
-}
-
-footer p {
-  margin: 10px 0;
-}
-
-footer a {
-  color: #007bff;
-  text-decoration: none;
-}
-
-footer a:hover {
-  text-decoration: underline;
-}
 html, body {
   height: 100%;
   margin: 0;
@@ -253,4 +192,9 @@ footer {
   padding: 20px;
   width: 100%;
   text-align: left;
+}
+
+hr {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }

@@ -1,7 +1,5 @@
 body {
   font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
 }
 
 header, footer {
@@ -10,14 +8,8 @@ header, footer {
   padding: 20px;
 }
 
-h1 {
-  margin: 0;
-}
-
 nav menu {
   list-style-type: none;
-  margin: 0;
-  padding: 0;
   display: flex;
   justify-content: flex-end;
   gap: 15px;
@@ -39,25 +31,18 @@ nav menu li a:hover {
   color: #bbbbbb;
 }
 
-hr {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  border-color: #ffffff;
-}
-
 main {
   padding: 20px;
 }
 
 main h2 {
+  color: #0f1f2c;
   font-size: 2rem;
   margin-bottom: 20px;
-  color: #0f1f2c;
 }
 
 .leaderboard {
   width: 100%;
-  border-collapse: collapse;
   margin-bottom: 20px;
 }
 
@@ -68,35 +53,23 @@ main h2 {
 }
 
 .leaderboard th {
-  background-color: #e9ecef;
   font-weight: bold;
-}
-
-.leaderboard tr:nth-child(even) {
-  background-color: #f8f9fa;
-}
-
-.leaderboard tr:hover {
   background-color: #e9ecef;
 }
 
-.recommended-box {
+
+.rec-box {
   background-color: #f8f9fa;
   padding: 15px;
-  border: 1px solid #dee2e6;
   border-radius: 5px;
   margin-top: 20px;
+  border: 1px solid #b7bbbe;
 }
 
-.recommended-box h4 {
-  margin-top: 0;
+
+
+.rec-box h4 {
   margin-bottom: 15px;
-}
-
-.Recommended {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
 }
 
 .recquiz {
@@ -107,18 +80,6 @@ main h2 {
   background-color: #e9ecef;
 }
 
-footer p {
-  margin: 10px 0;
-}
-
-footer a {
-  color: #007bff;
-  text-decoration: none;
-}
-
-footer a:hover {
-  text-decoration: underline;
-}
 html, body {
   height: 100%;
   margin: 0;
@@ -136,4 +97,10 @@ footer {
   padding: 20px;
   width: 100%;
   text-align: left;
+}
+
+hr {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-color: #ffffff;
 }
