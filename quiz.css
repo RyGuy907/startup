@@ -1,54 +1,256 @@
 body {
-  display: flex;
-  flex-direction: column;
-  min-width: 375px;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-header {
-  flex: 0 80px;
+header, footer {
+  background-color: #0f1f2cea; 
+  color: #ffffff; 
+  padding: 20px;
 }
+
+h1 {
+  margin: 0;
+}
+
+nav menu {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+}
+
+nav menu li {
+  display: inline;
+}
+
+nav menu li a {
+  font-size: 0.9rem;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav menu li a:hover {
+  text-decoration: underline;
+  color: #bbbbbb;
+}
+
+hr {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
 
 main {
-  flex: 1 calc(100vh - 110px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
+  padding: 20px;
 }
 
-footer {
-  flex: 0 30px;
+main h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
 }
 
-menu {
-  flex: 1;
-  display: flex;
-  /*  overwrite Bootstrap so the menu does not wrap */
-  flex-direction: row !important;
-  list-style: none;
+#tcount, #scount {
+  border: none;
+}
+main img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin-bottom: 15px;
 }
 
-.navbar-brand {
-  padding-left: 0.3em;
-  border-bottom: solid rgb(182, 182, 182) thin;
+main p {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
 }
 
-menu .nav-item {
-  padding: 0 0.3em;
+.container {
+  margin: 0;
+}
+
+
+fieldset.difficulty {
+  border: none;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+fieldset.difficulty label {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+fieldset.difficulty input[type="radio"] {
+  margin-right: 20px;
+}
+
+
+#tcount, #scount,  #timer, #score {
+  width: 100px;
+  margin-right: 10px;
+  text-align: center;
+}
+
+#timer, #score {
+  font-size: 2rem;
+  border: none;
+}
+
+button {
+  background-color: #3da134;
+  color: #ffffff;
+  border: none;
+  padding: 6px 20px;
+  margin-top: 10px;
+  font-size: 1rem;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #2b7224;
+  cursor: pointer;
+}
+
+
+#answerBox {
+  width: 50%;
+  padding: 10px;
+  font-size: 1rem;
+}
+
+
+.recommended-box {
+  background-color: #f8f9fa;
+  padding: 15px;
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+.recommended-box h4 {
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+
+.Recommended {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.recquiz {
+  cursor: pointer;
+}
+
+.recquiz:hover {
+  background-color: #e9ecef;
+}
+
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+table.easy, table.medium, table.hard {
+  display: none; 
+}
+
+table tr th, table tr td {
+  border: 1px solid #dee2e6;
+  padding: 10px;
+  text-align: left;
+}
+
+table tr th {
+  background-color: #e9ecef;
+  font-weight: bold;
+}
+
+.answer {
+  display: none; 
+}
+
+.answerhead {
+  display: none; 
+}
+
+
+.comments {
+  width: 100%;
+  margin-top: 20px;
+}
+
+#commentBox {
+  width: 80%;
+  padding: 10px;
+  font-size: 1rem;
+}
+
+.comments button {
+  padding: 10px 20px;
+  margin-left: 10px;
+  font-size: 1rem;
+}
+
+.comments tr td:first-child {
+  font-weight: bold;
+  width: 20%;
+}
+
+.comments tr td:nth-child(2) {
+  width: 60%;
+}
+
+.comments tr td:nth-child(3) {
+  width: 20%;
+  text-align: right;
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+.comments tr {
+  border-bottom: 1px solid #dee2e6;
+}
+
+.comments tr:last-child {
+  border-bottom: none;
+}
+
+footer p {
+  margin: 10px 0;
 }
 
 footer a {
-  float: right;
+  color: #007bff;
+  text-decoration: none;
 }
 
-@media (max-height: 600px) {
-  header {
-    display: none;
-  }
-  footer {
-    display: none;
-  }
-  main {
-    flex: 1 100vh;
-  }
+footer a:hover {
+  text-decoration: underline;
+}
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex-grow: 1;
+}
+
+footer {
+  background-color: #0f1f2cea;
+  color: #ffffff;
+  padding: 20px;
+  width: 100%;
+  text-align: left;
 }
