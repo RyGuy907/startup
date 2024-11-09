@@ -5,11 +5,10 @@ body {
 header, footer {
   background-color: #0f1f2cea;
   color: #ffffff;
-  padding: 20px;
+  padding: 25px;
 }
 
 nav menu {
-  list-style-type: none;
   display: flex;
   justify-content: flex-end;
   gap: 15px;
@@ -22,8 +21,8 @@ nav menu li {
 nav menu li a {
   font-size: 0.9rem;
   color: #ffffff;
-  text-decoration: none;
   font-weight: bold;
+  text-decoration: none;
 }
 
 nav menu li a:hover {
@@ -36,31 +35,32 @@ main {
 }
 
 main h2 {
-  color: #0f1f2c;
   font-size: 2rem;
   margin-bottom: 20px;
+  color: #0f1f2c;
 }
 
-.leaderboard {
-  width: 100%;
-  margin-bottom: 20px;
+.qlist {
+  list-style-type: none;
 }
 
-.leaderboard th, .leaderboard td {
-  border: 1px solid #dee2e6;
-  padding: 10px;
-  text-align: left;
+.qlist li {
+  margin-bottom: 15px;
 }
 
-.leaderboard th {
-  font-weight: bold;
-  background-color: #e9ecef;
+.qlist li a {
+  font-size: 1.2rem;
+  text-decoration: none;
 }
 
+.qlist li a:hover {
+  text-decoration: underline;
+  color: #0056b3;
+}
 
 .rec-box {
   background-color: #f8f9fa;
-  padding: 15px;
+  padding: 20px;
   border-radius: 5px;
   margin-top: 20px;
   border: 1px solid #b7bbbe;
@@ -80,6 +80,12 @@ main h2 {
   background-color: #e9ecef;
 }
 
+
+
+
+footer a:hover {
+  text-decoration: underline;
+}
 html, body {
   height: 100%;
   margin: 0;
@@ -102,5 +108,16 @@ footer {
 hr {
   margin-top: 20px;
   margin-bottom: 20px;
-  border-color: #ffffff;
+  border: 1px solid #c7c8c9;
+  opacity: 1;
+}
+
+.btn {
+  background-color: #fff;
+  color: rgb(33,37,81);
+  border: none;
+}
+
+.btn:hover {
+  background-color: #e9ecef;
 }
