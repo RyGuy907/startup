@@ -4,11 +4,6 @@ import './leaderboard.css';
 
 export function Leaderboard() {
   const navigate = useNavigate();
-  const leaderboardData = [
-    { rank: 1, username: 'jag_alskar_surstromming', points: 523, created: 'May 20, 2024' },
-    { rank: 2, username: 'mogged', points: 302, created: 'June 2, 2024' },
-    { rank: 3, username: 'attilaThePun', points: 301, created: 'July 3, 2024' },
-  ];
 
   return (
     <main className="container">
@@ -24,7 +19,7 @@ export function Leaderboard() {
                 <th>Account Created</th>
               </tr>
             </thead>
-            <tbody>
+            {/* <tbody>
               {leaderboardData.map((user, index) => (
                 <tr key={index}>
                   <td>{user.rank}</td>
@@ -33,7 +28,7 @@ export function Leaderboard() {
                   <td>{user.created}</td>
                 </tr>
               ))}
-            </tbody>
+            </tbody> */}
           </table>
         </div>
 

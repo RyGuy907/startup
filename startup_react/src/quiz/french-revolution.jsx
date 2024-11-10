@@ -16,8 +16,8 @@ export function Quiz() {
   const [userAnswer, setUserAnswer] = useState('');
   const [score, setScore] = useState(0);
   const [answeredQuestions, setAnsweredQuestions] = useState([]);
-  const [maxscore, setMSscore] = useState(0);
-  const [besttime, setbesttime] = useState("");
+  const [bestScore, setBestScore] = useState(localStorage.getItem('bestScore') || 0);
+  const [bestTime, setBestTime] = useState(localStorage.getItem('bestTime') || "");
 
   const easyAnswers = ["1789", "bastille", "estates general", "financial", "louis xvi", "marie antoinette", "jacobins", "robespierre", "guillotine", "cult of reason"];
   const mediumAnswers = ["debt", "versailles", "marat", "girondins", "saint domingue", "vendee", "austria", "1793", "sieyes", "napoleon"];
@@ -58,8 +58,12 @@ export function Quiz() {
           setShowOptions(true);
           setTimeLeft(60);
           setUserAnswer('');
-          setMSscore(10);
-          setbesttime(`0:${timeLeft}`);
+          setBestScore(10);
+          localStorage.setItem('bestScore', 10)
+          if (60-timeLeft < bestTime || bestTime==="") {
+            setBestTime(60-timeLeft);
+            localStorage.setItem('bestTime', 60-timeLeft);
+          }
 
         }
       }
@@ -78,9 +82,9 @@ export function Quiz() {
       setShowOptions(true);
       setTimeLeft(60);
       setUserAnswer('')
-      setbesttime(`1:00`);
-      if (score > maxscore) {
-        setMSscore(score);
+      if (score + 1 > bestScore) {
+        setBestScore(score+1)
+        localStorage.setItem('bestScore', score + 1);
       }
     }
     return () => clearInterval(timer);
@@ -140,11 +144,11 @@ export function Quiz() {
 
           <div>
             <label htmlFor="tcount">Best Time:</label>
-            <input type="text" id="tcount" value={`${besttime}`} readOnly />
+            <input type="text" id="tcount" value={`0:${bestTime}`} readOnly />
           </div>
           <div>
             <label htmlFor="scount">Best Score:</label>
-            <input type="text" id="scount" value={`${maxscore}`} readOnly />
+            <input type="text" id="scount" value={`${bestScore}`} readOnly />
           </div>
           <br />
           {gameInfo && (
