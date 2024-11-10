@@ -9,6 +9,7 @@ Authentication - profile.html (login placeholders)
 Database data - leaderboard data, user data
 websocket data - real-time leaderboard, comments
 
+e
 
 midterm review:
 
