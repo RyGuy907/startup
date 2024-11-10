@@ -56,8 +56,6 @@ export function Profile() {
     setAuthState(AuthState.Unauthenticated);
     localStorage.setItem('bestScore', 0);
     localStorage.setItem('bestTime', '');
-    setBestScore=0
-    setBestTime=""
   };
 
 
