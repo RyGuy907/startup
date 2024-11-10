@@ -55,24 +55,16 @@ export function Profile() {
             <h4>Recommended Quizzes</h4>
             <ul className="recquiz list-group">
               <li className="recquiz list-group-item">
-                <button className="btn w-100" onClick={() => navigate('/quiz/seven-years-war')}>
-                  The Seven Years' War
-                </button>
+                <button className="btn" onClick={() => navigate('/quiz/seven-years-war')}>The Seven Years' War</button>
               </li>
               <li className="recquiz list-group-item">
-                <button className="btn w-100" onClick={() => navigate('/quiz/napoleon')}>
-                  Napoleon Bonaparte
-                </button>
+                <button className="btn" onClick={() => navigate('/quiz/napoleon')}>Napoleon Bonaparte</button>
               </li>
               <li className="recquiz list-group-item">
-                <button className="btn w-100" onClick={() => navigate('/quiz/monarchs-france')}>
-                  Monarchs of France
-                </button>
+                <button className="btn" onClick={() => navigate('/quiz/monarchs-france')}>Monarchs of France</button>
               </li>
               <li className="recquiz list-group-item">
-                <button className="btn w-100" onClick={() => navigate('/quiz/american-revolution')}>
-                  The American Revolution
-                </button>
+                <button className="btn" onClick={() => navigate('/quiz/american-revolution')}>The American Revolution</button>
               </li>
             </ul>
           </div>
