@@ -4,7 +4,21 @@ import './main.css';
 
 export function Main(props) {
   const navigate = useNavigate();
+  const [quote, setQuote] = React.useState('Loading...');
+  const [width, setWidth] = React.useState(500)
+  const [height, setHeight] = React.useState(500)
 
+  React.useEffect(() => {
+  fetch('https://api.thecatapi.com/v1/images/search?limit=1')
+      .then((response) => response.json())
+      .then((data) => {
+        setQuote(data[0].url);
+        setWidth(data[0].width);
+        setHeight(data[0].height)
+      })
+      .catch();
+  }, []);
+  
   return (
     <main className="container">
       <div className="row">
@@ -24,6 +38,9 @@ export function Main(props) {
             <li><NavLink to="/quiz/gilded-age">The Gilded Age</NavLink></li>
             <li><NavLink to="/quiz/tsarist-russia">Tsarist Russia</NavLink></li>
           </ul>
+          <hr></hr>
+          <img src={quote} width={width} height={height}></img>
+
         </div>
 
         <div className="col-md-4">

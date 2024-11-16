@@ -4,9 +4,11 @@ import './quiz.css';
 
 export function Quiz() {
   const navigate = useNavigate();
+
   const [imageUrl] = useState('https://cdn.britannica.com/98/90498-050-5527D0C1/prison-event-Bastille-French-Revolution-engraving-July-14-1789.jpg?w=300');
   const [quote] = useState('Can you answer these questions about the French Revolution?');
   const [quote2] = useState("Only guess last names for most characters, don't worry about 'the', and press enter to guess!");
+
   const [difficulty, setDifficulty] = useState('medium');
   const [timeLeft, setTimeLeft] = useState(60);
   const [isTimerRunning, setIsTimerRunning] = useState(false);
@@ -16,12 +18,57 @@ export function Quiz() {
   const [userAnswer, setUserAnswer] = useState('');
   const [score, setScore] = useState(0);
   const [answeredQuestions, setAnsweredQuestions] = useState([]);
-  const [bestScore, setBestScore] = useState(localStorage.getItem('bestScore') || 0);
-  const [bestTime, setBestTime] = useState(localStorage.getItem('bestTime') || "");
+  const [scores, setScores] = useState([]);
+  const [bestTime, setBestTime] = useState(null);
 
-  const easyAnswers = ["1789", "bastille", "estates general", "financial", "louis xvi", "marie antoinette", "jacobins", "robespierre", "guillotine", "cult of reason"];
-  const mediumAnswers = ["debt", "versailles", "marat", "girondins", "saint domingue", "vendee", "austria", "1793", "sieyes", "napoleon"];
-  const hardAnswers = ["necker", "sonthonax", "galbaud", "robespierre", "brunswick", "pillnitz", "public safety", "without pants", "ville affranchie", "ville sans nom"];
+  const fetchScores = async () => {
+    try {
+      const response = await fetch('/api/scores');
+      if (response.ok) {
+        const data = await response.json();
+        setScores(data);
+
+        const fastestTime = data.reduce(
+          (min, entry) => (min === null || entry.timeLeft > min ? entry.timeLeft : min),
+          null
+        );
+        setBestTime(fastestTime);
+      }
+    } catch (error) {
+      console.error('Failed to fetch scores:', error);
+    }
+  };
+
+  const submitScore = async (newScore) => {
+    try {
+      const response = await fetch('/api/score', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newScore),
+      });
+
+      if (response.ok) {
+        const updatedScores = await response.json();
+        setScores(updatedScores);
+
+        const newBestTime = updatedScores.reduce(
+          (min, entry) => (min === null || entry.timeLeft > min ? entry.timeLeft : min),
+          null
+        );
+        setBestTime(newBestTime);
+      }
+    } catch (error) {
+      console.error('Failed to submit score:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchScores();
+  }, []);
+
+  const easyAnswers = ['1789', 'bastille', 'estates general', 'financial', 'louis xvi', 'marie antoinette', 'jacobins', 'robespierre', 'guillotine', 'cult of reason'];
+  const mediumAnswers = ['debt', 'versailles', 'marat', 'girondins', 'saint domingue', 'vendee', 'austria', '1793', 'sieyes', 'napoleon'];
+  const hardAnswers = ['necker', 'sonthonax', 'galbaud', 'robespierre', 'brunswick', 'pillnitz', 'public safety', 'without pants', 'ville affranchie', 'ville sans nom'];
 
   const DifficultyChange = (event) => {
     setDifficulty(event.target.value);
@@ -42,6 +89,24 @@ export function Quiz() {
     }
   };
 
+  const EndClick = () => {
+    setIsTimerRunning(false);
+    setShowAnswers(true);
+    setShowOptions(true);
+    setGameInfo(false);
+    submitFinalScore();
+  }
+  const resetQuiz = () => {
+    setDifficulty('medium');
+    setTimeLeft(60);
+    setIsTimerRunning(false);
+    setShowAnswers(false);
+    setShowOptions(true);
+    setGameInfo(false);
+    setUserAnswer('');
+    setScore(0);
+    setAnsweredQuestions([]);
+  };
   const KeyPress = (event) => {
     if (event.key === 'Enter') {
       const userAnswerLowerCase = userAnswer.toLowerCase();
@@ -49,49 +114,45 @@ export function Quiz() {
       const answerIndex = answers.indexOf(userAnswerLowerCase);
 
       if (answerIndex !== -1 && !answeredQuestions.includes(userAnswerLowerCase)) {
-        setScore(prevScore => prevScore + 1);
-        setAnsweredQuestions(prev => [...prev, userAnswerLowerCase]);
+        setScore((prevScore) => prevScore + 1);
+        setAnsweredQuestions((prev) => [...prev, userAnswerLowerCase]);
         setUserAnswer('');
+
         if (score + 1 === 10) {
           setIsTimerRunning(false);
           setShowAnswers(true);
           setShowOptions(true);
-          setTimeLeft(60);
-          setUserAnswer('');
-          setBestScore(10);
-          localStorage.setItem('bestScore', 10)
-          if (60-timeLeft < bestTime || bestTime==="") {
-            setBestTime(60-timeLeft);
-            localStorage.setItem('bestTime', 60-timeLeft);
-          }
-
+          setGameInfo(false);
+          submitFinalScore();
         }
       }
     }
+  };
+
+  const submitFinalScore = () => {
+    const finalScore = { difficulty, score, timeLeft: 60 - timeLeft };
+    submitScore(finalScore);
   };
 
   useEffect(() => {
     let timer;
     if (isTimerRunning && timeLeft > 0) {
       timer = setInterval(() => {
-        setTimeLeft(prevTime => prevTime - 1);
+        setTimeLeft((prevTime) => prevTime - 1);
       }, 1000);
     } else if (timeLeft === 0) {
       setIsTimerRunning(false);
       setShowAnswers(true);
       setShowOptions(true);
-      setTimeLeft(60);
-      setUserAnswer('')
-      if (score + 1 > bestScore) {
-        setBestScore(score+1)
-        localStorage.setItem('bestScore', score + 1);
-      }
+      setGameInfo(false);
+      submitFinalScore();
     }
+
     return () => clearInterval(timer);
   }, [isTimerRunning, timeLeft]);
 
   const renderAnswer = (answer) => {
-    return showAnswers || answeredQuestions.includes(answer) ? answer : "";
+    return showAnswers || answeredQuestions.includes(answer) ? answer : '';
   };
 
   return (
@@ -105,71 +166,79 @@ export function Quiz() {
 
           {showOptions && (
             <>
+            <h4>Top Scores</h4>
+            <ul>
+              {Object.entries(
+                scores.reduce((highestScores, currentScore) => {
+                  const { difficulty, score, timeLeft } = currentScore;
+
+                  if (
+                    !highestScores[difficulty] ||
+                    currentScore.score > highestScores[difficulty].score ||
+                    (currentScore.score === highestScores[difficulty].score && currentScore.timeLeft < highestScores[difficulty].timeLeft)
+                  ) {
+                    highestScores[difficulty] = currentScore;
+                  }
+
+                  return highestScores;
+                }, {})
+              ).map(([difficulty, score], index) => (
+                <li key={index}>
+                  <strong>{difficulty.toUpperCase()}</strong>: {score.score + 1} points ({score.timeLeft}s)
+                </li>
+              ))}
+            </ul>
               <fieldset className="difficulty">
                 <label htmlFor="radio1">Easy</label>
-                <input 
-                  type="radio" 
-                  id="radio1" 
-                  name="varRadio" 
-                  value="easy" 
+                <input
+                  type="radio"
+                  id="radio1"
+                  name="varRadio"
+                  value="easy"
                   checked={difficulty === 'easy'}
-                  onChange={DifficultyChange} 
+                  onChange={DifficultyChange}
                 />
                 <label htmlFor="radio2">Medium</label>
-                <input 
-                  type="radio" 
-                  id="radio2" 
-                  name="varRadio" 
-                  value="medium" 
+                <input
+                  type="radio"
+                  id="radio2"
+                  name="varRadio"
+                  value="medium"
                   checked={difficulty === 'medium'}
-                  onChange={DifficultyChange} 
+                  onChange={DifficultyChange}
                 />
                 <label htmlFor="radio3">Hard</label>
-                <input 
-                  type="radio" 
-                  id="radio3" 
-                  name="varRadio" 
-                  value="hard" 
+                <input
+                  type="radio"
+                  id="radio3"
+                  name="varRadio"
+                  value="hard"
                   checked={difficulty === 'hard'}
-                  onChange={DifficultyChange} 
+                  onChange={DifficultyChange}
                 />
               </fieldset>
 
-              <div>
-                <button onClick={PlayClick}>Play</button>
-              </div>
-              <br />
+              <button onClick={PlayClick}>Play</button>
             </>
           )}
 
-          <div>
-            <label htmlFor="tcount">Best Time:</label>
-            <input type="text" id="tcount" value={`0:${bestTime}`} readOnly />
-          </div>
-          <div>
-            <label htmlFor="scount">Best Score:</label>
-            <input type="text" id="scount" value={`${bestScore}`} readOnly />
-          </div>
-          <br />
           {gameInfo && (
             <>
               <input type="text" id="timer" value={`${Math.floor(timeLeft / 60)}:${String(timeLeft % 60).padStart(2, '0')}`} readOnly />
               <input type="text" id="score" value={`${score}/10`} readOnly />
-              <br />
-              <div>
-                <input
-                  type="text"
-                  id="answerbox"
-                  placeholder="Answer Here..."
-                  value={userAnswer}
-                  onChange={(e) => setUserAnswer(e.target.value)}
-                  onKeyDown={KeyPress}
-                />
-              </div>
-              <br />
+              <input
+                type="text"
+                id="answerbox"
+                placeholder="Answer Here..."
+                value={userAnswer}
+                onChange={(e) => setUserAnswer(e.target.value)}
+                onKeyDown={KeyPress}
+              />
+              <button onClick={EndClick}>End</button>
             </>
           )}
 
+        
           {difficulty === 'easy' && (
             <table className="easy">
               <thead>
@@ -241,27 +310,47 @@ export function Quiz() {
 
           <hr />
         </div>
+      </div>
 
         <div className="col-md-4">
           <div className="rec-box">
             <h4>Recommended Quizzes</h4>
             <ul className="recquiz list-group">
               <li className="recquiz list-group-item">
-                <button className="btn" onClick={() => navigate('/quiz/seven-years-war')}>The Seven Years' War</button>
+                <button
+                  className="btn"
+                  onClick={() => navigate('/quiz/seven-years-war')}
+                >
+                  The Seven Years' War
+                </button>
               </li>
               <li className="recquiz list-group-item">
-                <button className="btn" onClick={() => navigate('/quiz/napoleon')}>Napoleon Bonaparte</button>
+                <button
+                  className="btn"
+                  onClick={() => navigate('/quiz/napoleon')}
+                >
+                  Napoleon Bonaparte
+                </button>
               </li>
               <li className="recquiz list-group-item">
-                <button className="btn" onClick={() => navigate('/quiz/monarchs-france')}>Monarchs of France</button>
+                <button
+                  className="btn"
+                  onClick={() => navigate('/quiz/monarchs-france')}
+                >
+                  Monarchs of France
+                </button>
               </li>
               <li className="recquiz list-group-item">
-                <button className="btn" onClick={() => navigate('/quiz/american-revolution')}>The American Revolution</button>
+                <button
+                  className="btn"
+                  onClick={() => navigate('/quiz/american-revolution')}
+                >
+                  The American Revolution
+                </button>
               </li>
             </ul>
           </div>
         </div>
-      </div>
     </main>
   );
 }
