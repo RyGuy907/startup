@@ -59,4 +59,4 @@ I created the main functionality of the website so that the French Rev quiz work
 
 Service
 
-I added a backend and made calls to its service endpoints (for scores, times, users, etc) and to another api (cat pics). Login is still a little finicky with clearing data after logout and etc but this can be fixed in later parts. Also in the process of changing this the recommended box in a few pages got messed up because of some missing or misplaced div elements. I'll fix this in later parts as well. 
+I added a backend and made calls to its service endpoints (for scores, times, users, etc) and to another api (cat pics). Login is still a little finicky with clearing data after logout and etc but this can be fixed in later parts. Also in the process of changing this the recommended box in a few pages got messed up because of some missing or misplaced div elements. I'll fix this in later parts as well. Also the leaderboard still hasn't been made yet really, I will do this in the later login/websocket parts.
