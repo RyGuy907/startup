@@ -5,7 +5,6 @@ import { peerProxy } from './peerProxy.js';
 const app = express();
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
-// In-memory data stores
 let users = {}; // Users: { email: { password, token } }
 let scores = []; // Scores: [{ user, score, difficulty, timeLeft, date }]
 
@@ -17,11 +16,6 @@ app.use(express.static('public')); // Serve static files from "public"
 const apiRouter = express.Router();
 app.use('/api', apiRouter);
 
-//
-// Authentication Endpoints
-//
-
-// Create a new user account
 apiRouter.post('/auth/create', (req, res) => {
   const { email, password } = req.body;
 
@@ -35,7 +29,6 @@ apiRouter.post('/auth/create', (req, res) => {
   res.status(201).send({ token });
 });
 
-// Log in an existing user
 apiRouter.post('/auth/login', (req, res) => {
   const { email, password } = req.body;
   const user = users[email];
@@ -49,11 +42,6 @@ apiRouter.post('/auth/login', (req, res) => {
 
   res.status(401).send({ msg: 'Invalid email or password' });
 });
-
-//
-// Leaderboard Endpoints
-//
-
 // Submit a new score
 apiRouter.post('/score', (req, res) => {
   const { user, score, difficulty, timeLeft } = req.body;
@@ -62,7 +50,6 @@ apiRouter.post('/score', (req, res) => {
     return res.status(400).send({ msg: 'User is required to submit a score' });
   }
 
-  // Add the new score to the leaderboard
   scores.push({
     user: user || 'Anonymous',
     score,
@@ -71,10 +58,8 @@ apiRouter.post('/score', (req, res) => {
     date: new Date().toISOString(),
   });
 
-  // Sort by score (descending) and then by timeLeft (descending)
   scores.sort((a, b) => b.score - a.score || b.timeLeft - a.timeLeft);
 
-  // Keep only the top 9 scores
   if (scores.length > 9) {
     scores.length = 9;
   }
@@ -83,16 +68,10 @@ apiRouter.post('/score', (req, res) => {
   res.status(200).send(scores);
 });
 
-// Get the current leaderboard scores
 apiRouter.get('/scores', (_req, res) => {
   res.status(200).send(scores);
 });
 
-//
-// Utility Endpoints
-//
-
-// Logout (Optional: Clear token for user)
 apiRouter.post('/auth/logout', (req, res) => {
   const { token } = req.body;
 
@@ -105,10 +84,6 @@ apiRouter.post('/auth/logout', (req, res) => {
 
   res.status(401).send({ msg: 'Invalid token' });
 });
-
-//
-// React Fallback
-//
 
 // Serve the React app for unknown routes
 app.use((_req, res) => {
