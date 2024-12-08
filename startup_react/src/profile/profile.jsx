@@ -172,7 +172,7 @@ export function Profile() {
                 <tbody>
                   <tr>
                     <td>{userName}</td>
-                    <td>{bestScore + 1}</td>
+                    <td>{bestScore}</td>
                     <td>{bestTime !== null ? `${60 - bestTime}s` : 'N/A'}</td>
                     <td>{creationDate}</td>
                   </tr>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './leaderboard.css';
 
 export function Leaderboard() {
-  const [scores, setScores] = useState([]); // Keep scores in state
+  const [scores, setScores] = useState([]);
   const userName = localStorage.getItem('userName'); // Persistent user-specific data
 
   useEffect(() => {
@@ -46,8 +46,8 @@ export function Leaderboard() {
     ? scores.map((score, index) => (
         <tr key={index}>
           <td>{index + 1}</td>
-          <td>{score.user || 'Anonymous'}</td> {/* Use user field */}
-          <td>{score.score + 1}</td> {/* Adjust score as needed */}
+          <td>{score.user || 'Unknown'}</td> {/* Use user field */}
+          <td>{score.score}</td>
           <td>{score.date ? new Date(score.date).toLocaleString() : 'N/A'}</td>
         </tr>
       ))
