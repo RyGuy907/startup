@@ -5,7 +5,7 @@
 
 ### Elevator pitch
 
-Are you an avid enjoyer of history? Want to test your knowledge against friends and others? This History Trivia site specializes in testing historical facts and general knowledge with a multitude of different topics, difficulties, and types of quizzes. The more quizzes you complete successfully, the higher overall score your account will have, and you can unlock higher ranks complete with bragging rights. To defend your knowledge you can even challenge friends or play co-op and work together. 
+Are you an avid enjoyer of history? Want to test your knowledge against friends and others? This History Trivia site specializes in testing historical facts and general knowledge with a multitude of different topics, difficulties, and types of quizzes. The more quizzes you complete successfully, the higher overall score your account will have, and you can unlock higher ranks complete with bragging rights. To defend your knowledge you can even challenge friends or play co-op and work together.
 
 ### Design
 
