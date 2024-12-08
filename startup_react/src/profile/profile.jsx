@@ -17,39 +17,37 @@ export function Profile() {
   const [bestScore, setBestScore] = useState(0);
   const [bestTime, setBestTime] = useState(null);
 
-const clearUserData = () => {
-  // Clear user-specific local storage data
-  localStorage.removeItem('userName');
-  localStorage.removeItem('creationDate');
+  const clearUserData = () => {
+    localStorage.removeItem('userName');
+    localStorage.removeItem('userToken');
+    localStorage.removeItem('creationDate');
+    setUserName('');
+    setAuthState(AuthState.Unauthenticated);
+    setBestScore(0);
+    setBestTime(null);
+    setCreationDate('');
+  };
 
-  // Reset state variables
-  setUserName('');
-  setBestScore(0);
-  setBestTime(null);
-  setCreationDate('');
-};
-  // Fetch scores directly in the component
   const fetchScores = async () => {
     try {
-      const response = await fetch('/api/scores', {
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('userToken')}`, // Include user-specific token if required
-        },
-      });
-  
+      const response = await fetch('/api/scores');
       if (response.ok) {
         const data = await response.json();
-        const highestScore = data.reduce((max, score) => (score.score > max ? score.score : max), 0);
-        const fastestTime = data.reduce(
+
+        const userScores = data.filter((score) => score.user === userName);
+        const highestScore = userScores.reduce((max, score) => (score.score > max ? score.score : max), 0);
+        const fastestTime = userScores.reduce(
           (min, score) => (min === null || score.timeLeft > min ? score.timeLeft : min),
           null
         );
-  
+
         setBestScore(highestScore);
         setBestTime(fastestTime);
+      } else {
+        console.error('Failed to fetch scores:', response.statusText);
       }
     } catch (error) {
-      console.error('Failed to fetch scores:', error);
+      console.error('Error fetching scores:', error);
     }
   };
 
@@ -60,32 +58,26 @@ const clearUserData = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
       });
-  
+
       if (response.ok) {
         const data = await response.json();
-  
-        // Clear previous user data
         clearUserData();
-  
-        // Set new user data
         localStorage.setItem('userName', email);
+        localStorage.setItem('userToken', data.token);
         setUserName(email);
         setAuthState(AuthState.Authenticated);
-  
         const currentDate = new Date().toLocaleDateString();
         localStorage.setItem('creationDate', currentDate);
         setCreationDate(currentDate);
-  
-        // Re-fetch scores for the new user
         await fetchScores();
       } else {
         alert('Invalid email or password');
       }
     } catch (error) {
-      console.error('Failed to login:', error);
+      console.error('Error logging in:', error);
     }
   };
-  
+
   const createAccount = async (email, password) => {
     try {
       const response = await fetch('/api/auth/create', {
@@ -93,7 +85,7 @@ const clearUserData = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
       });
-  
+
       if (response.ok) {
         alert('Account created successfully. Logging you in...');
         clearUserData();
@@ -104,20 +96,12 @@ const clearUserData = () => {
         alert('Failed to create account. Please try again.');
       }
     } catch (error) {
-      console.error('Failed to create account:', error);
+      console.error('Error creating account:', error);
     }
   };
 
-  
   const handleLogout = () => {
-    localStorage.clear();
-  
-    setUserName('');
-    setAuthState(AuthState.Unauthenticated);
-    setBestScore(0);
-    setBestTime(null);
-    setCreationDate('');
-  
+    clearUserData();
     navigate('/');
   };
 
@@ -188,8 +172,8 @@ const clearUserData = () => {
                 <tbody>
                   <tr>
                     <td>{userName}</td>
-                    <td>{bestScore+1}</td>
-                    <td>{bestTime !== null ? `${bestTime}s` : 'N/A'}</td>
+                    <td>{bestScore + 1}</td>
+                    <td>{bestTime !== null ? `${60 - bestTime}s` : 'N/A'}</td>
                     <td>{creationDate}</td>
                   </tr>
                 </tbody>

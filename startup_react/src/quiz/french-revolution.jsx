@@ -21,6 +21,8 @@ export function Quiz() {
   const [scores, setScores] = useState([]);
   const [bestTime, setBestTime] = useState(null);
 
+  const userName = localStorage.getItem('userName') || 'Anonymous'; // Get the user's name or default to "Anonymous"
+
   const fetchScores = async () => {
     try {
       const response = await fetch('/api/scores');
@@ -95,7 +97,8 @@ export function Quiz() {
     setShowOptions(true);
     setGameInfo(false);
     submitFinalScore();
-  }
+  };
+
   const resetQuiz = () => {
     setDifficulty('medium');
     setTimeLeft(60);
@@ -107,6 +110,7 @@ export function Quiz() {
     setScore(0);
     setAnsweredQuestions([]);
   };
+
   const KeyPress = (event) => {
     if (event.key === 'Enter') {
       const userAnswerLowerCase = userAnswer.toLowerCase();
@@ -130,7 +134,7 @@ export function Quiz() {
   };
 
   const submitFinalScore = () => {
-    const finalScore = { difficulty, score, timeLeft: 60 - timeLeft };
+    const finalScore = { user: userName, difficulty, score, timeLeft: timeLeft };
     submitScore(finalScore);
   };
 
@@ -163,31 +167,18 @@ export function Quiz() {
           <img src={imageUrl} alt="Storming of the Bastille" className="img-fluid" />
           <p>{quote}</p>
           <p>{quote2}</p>
-
+          {/* Displaying top scores */}
+          <h4>Top Scores</h4>
+          <ul>
+            {scores.map((score, index) => (
+              <li key={index}>
+                <strong>{score.user}</strong>: {score.score} points ({60 - score.timeLeft}s)
+              </li>
+            ))}
+          </ul>
+          {/* Difficulty options and play button */}
           {showOptions && (
             <>
-            <h4>Top Scores</h4>
-            <ul>
-              {Object.entries(
-                scores.reduce((highestScores, currentScore) => {
-                  const { difficulty, score, timeLeft } = currentScore;
-
-                  if (
-                    !highestScores[difficulty] ||
-                    currentScore.score > highestScores[difficulty].score ||
-                    (currentScore.score === highestScores[difficulty].score && currentScore.timeLeft < highestScores[difficulty].timeLeft)
-                  ) {
-                    highestScores[difficulty] = currentScore;
-                  }
-
-                  return highestScores;
-                }, {})
-              ).map(([difficulty, score], index) => (
-                <li key={index}>
-                  <strong>{difficulty.toUpperCase()}</strong>: {score.score + 1} points ({score.timeLeft}s)
-                </li>
-              ))}
-            </ul>
               <fieldset className="difficulty">
                 <label htmlFor="radio1">Easy</label>
                 <input
@@ -221,7 +212,7 @@ export function Quiz() {
               <button onClick={PlayClick}>Play</button>
             </>
           )}
-
+          {/* Timer and answer input */}
           {gameInfo && (
             <>
               <input type="text" id="timer" value={`${Math.floor(timeLeft / 60)}:${String(timeLeft % 60).padStart(2, '0')}`} readOnly />
