@@ -57,6 +57,10 @@ Javascript/React
 
 I created the main functionality of the website so that the French Rev quiz works now and has difficulty settings, points, a timer, etc. Currently this is the only quiz that has been created so far but it demonstrates the functionality and wouldn't be too difficult to add more using this template in the future. I also made the site pages navigate using react (and converted everything and the site itself into using vite/react) and added a basic login system for the local system which shows information in the profile tab. The leaderboard is inactive currently but will be added when the websocket/database part of the startup is made. Also, for now I changed one of the navbar options to quiz (which just routes to the french rev quiz) because no other ones are currently made. the login/local system stuff is still a little finicky but this can be ironed out when its main functionality is made. It is sort of a placeholder right now
 
-Service
+Service/login
 
-I added a backend and made calls to its service endpoints (for scores, times, users, etc) and to another api (cat pics). Login is still a little finicky with clearing data after logout and etc but this can be fixed in later parts. Also in the process of changing this the recommended box in a few pages got messed up because of some missing or misplaced div elements. I'll fix this in later parts as well. Also the leaderboard still hasn't been made yet really, I will do this in the later login/websocket parts.
+I added a backend and made calls to its service endpoints (for scores, times, users, etc) and to another api (cat pics). Login is still a little finicky with clearing data after logout and etc but this can be fixed in later parts. Also in the process of changing this the recommended box in a few pages got messed up because of some missing or misplaced div elements. I'll fix this in later parts as well. Also the leaderboard still hasn't been made yet really, I will do this in the later login/websocket parts. Also made a little cat gif/pic fetch.
+
+Websocket
+
+I added functionality for the real time leaderboard and changed some of the logic for collecting/displaying scores to accomodate this. at this point all the functionality is there, just the other quizzes haven't been made and at this rate they won't be by the end of the semester. that would consist of just replacing questions and answers in basically the same file and then adding react navigation to all of them. 
